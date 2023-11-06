@@ -25,6 +25,7 @@ namespace TreeWorkerWpfApp
         public AddWorkerWindowxaml()
         {
             InitializeComponent();
+            datePickerBirthday.IsDropDownOpen = false;
         }
 
         public void FillComboDepartments(List<Department> departments)
@@ -58,10 +59,12 @@ namespace TreeWorkerWpfApp
             string[] sdt = w.BirthDay.Split('.');
             if (sdt.Length >= 2)
             {
-                if (int.TryParse(sdt[0], out int day) && int.TryParse(sdt[0], out int month) && int.TryParse(sdt[0], out int year))
+                if (int.TryParse(sdt[0], out int year) && int.TryParse(sdt[1], out int month) && int.TryParse(sdt[2], out int day))
                 {
                     DateTime dt = new DateTime(year, month, day);
-                    datePickerBirthday.DisplayDate = dt;
+                    //datePickerBirthday.DisplayDate = dt;
+                    datePickerBirthday.SelectedDate = dt;
+                    datePickerBirthday.IsDropDownOpen = false;
                 }
             }
             IsEdit = true;
@@ -73,7 +76,8 @@ namespace TreeWorkerWpfApp
             if (dt != null)
             {
                 DateTime sdt = (DateTime)dt;
-                strBirthDay = string.Format("{0:D02}.{1:D02}.{2:D04}", sdt.Day, sdt.Month, sdt.Year);
+                //strBirthDay = string.Format("{0:D02}.{1:D02}.{2:D04}", sdt.Day, sdt.Month, sdt.Year);
+                strBirthDay = string.Format("{0:D04}.{1:D02}.{2:D02}", sdt.Year, sdt.Month, sdt.Day);
             }
         }
 

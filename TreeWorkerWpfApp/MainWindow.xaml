@@ -54,7 +54,8 @@
                 </DataTemplate>
             </TreeView.ItemTemplate-->
         </TreeView>
-        <DataGrid x:Name="dataGrid" Grid.Column="2" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFFFFDD2" FontFamily="Times New Roman" FontSize="16" AutoGenerateColumns="False">
+        <DataGrid x:Name="dataGrid" Grid.Column="2" Grid.RowSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFFFFDD2"
+                  FontFamily="Times New Roman" FontSize="16" AutoGenerateColumns="False" IsReadOnly="True" MouseRightButtonDown="OnDataGridMouseRightButtonDown">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="№" MinWidth="40" Binding="{Binding Path=ID}"/>
                 <DataGridTextColumn Header="Ф. И. О."  MinWidth="200" Binding="{Binding Path=FullName}"/>

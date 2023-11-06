@@ -27,6 +27,8 @@ namespace TreeWorkerWpfApp
 
         string pathDepartments = "Departments.xml";
         string pathWorkers = "Workers.xml";
+
+        string selectDepName = "";
         public MainWindow()
         {
             InitializeComponent();
@@ -121,9 +123,15 @@ namespace TreeWorkerWpfApp
             Node nNode = e.NewValue as Node;
             if (nNode != null)
             {
+                selectDepName = nNode.Name;
                 if (wrkRep.Count > 0)
                 {
-                    dataGrid.ItemsSource = wrkRep.GetWorkersFromDep(nNode.Name);
+                    Department dep = depRep[nNode.Name];
+                    if (dep != null && dep.Parent == null)
+                    {
+                        selectDepName = "";
+                    }
+                    dataGrid.ItemsSource = wrkRep.GetWorkersFromDep(selectDepName);
                 }
             }
         }
@@ -212,6 +220,51 @@ namespace TreeWorkerWpfApp
                     OnTreeViewSelectedItemChanged(sender, new RoutedPropertyChangedEventArgs<object>(treeView.SelectedItem, curNode));
                 }
             } 
+        }
+
+        private void OnDataGridMouseRightButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            //MessageBox.Show($"sender={sender}  e={e}");
+            TextBlock tb = e.OriginalSource as TextBlock;
+            if (tb != null)
+            {
+                Worker w = tb.DataContext as Worker;
+                if (w != null)
+                {
+                    //MessageBox.Show(w.ToString());
+                    dataGrid.SelectedItem = w;
+
+                    ContextMenu contextMenu = new ContextMenu();
+                    MenuItem menuItemEdit = new MenuItem();
+                    menuItemEdit.Header = "Редактировать данные сотрудника";
+                    menuItemEdit.Click += (send, args) => {
+                        AddWorkerWindowxaml aww = new AddWorkerWindowxaml();
+                        aww.FillComboDepartments(depRep.AllDepartments);
+                        aww.SetEditWorker(w);
+                        if (aww.ShowDialog() == true)
+                        {   
+                            dataGrid.InputScope = null;
+                            w = aww.curWorker;
+                            //wrkRep.AddWorker(aww.curWorker);
+                            dataGrid.ItemsSource = wrkRep.GetWorkersFromDep(selectDepName);
+                            dataGrid.Items.Refresh();
+                        }
+                    };
+                    contextMenu.Items.Add(menuItemEdit);
+                    MenuItem menuItemDel = new MenuItem();
+                    menuItemDel.Header = "Уволить сотрудника";
+                    menuItemDel.Click += (send, args) => {
+                        if (MessageBox.Show($"Выбран сотрудник : {w.ToString()}\n\nУволить сотрудника ?", "Уволить сотрудника", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        {
+                            wrkRep.DelWorker(w);
+                            dataGrid.ItemsSource = wrkRep.GetWorkersFromDep(selectDepName);
+                        }
+                    };
+                    contextMenu.Items.Add(menuItemDel);
+                    contextMenu.IsOpen = true;
+                }
+            }
+            //
         }
     }
 

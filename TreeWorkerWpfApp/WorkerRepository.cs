@@ -67,6 +67,7 @@ namespace TreeWorkerWpfApp
 
         public List<Worker> GetWorkersFromDep(string nameDep)
         {
+            if (nameDep == "") return workers;
             List<Worker> res = new List<Worker>();
             foreach(Worker w in workers)
             {
