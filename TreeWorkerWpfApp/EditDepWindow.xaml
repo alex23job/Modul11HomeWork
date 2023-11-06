@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:TreeWorkerWpfApp"
         mc:Ignorable="d"
-        Title="Редактирование назвагния и/или подчинённости департамента" Height="270" Width="600" FontFamily="Times New Roman" FontSize="24" ResizeMode="NoResize">
+        Title="Редактирование названия и/или подчинённости департамента" Height="270" Width="600" FontFamily="Times New Roman" FontSize="24" ResizeMode="NoResize" Icon="MainIcon.ico">
     <Grid Background="#FFFFFDD8">
         <Grid.RowDefinitions>
             <RowDefinition Height="40*"></RowDefinition>

@@ -44,7 +44,6 @@ namespace TreeWorkerWpfApp
 
         private void CreateTreeFromList(List<Department> list)
         {
-            //treeView.Items.Clear();
             int i;
             if (list.Count == 0)
             {
@@ -70,7 +69,6 @@ namespace TreeWorkerWpfApp
                             }
                         }
                     }
-
                 }
                 if (rootNode != null)
                 {
@@ -86,7 +84,6 @@ namespace TreeWorkerWpfApp
 
         private void OnRenameDepartment(object sender, RoutedEventArgs e)
         {
-            //var data = (sender as FrameworkElement).DataContext as Department;
             var data = e.OriginalSource as TreeViewItem;
             Department dep = data.Header as Department;
             if (dep != null)
@@ -95,9 +92,7 @@ namespace TreeWorkerWpfApp
 
         private void OnDelDepartment(object sender, RoutedEventArgs e)
         {
-            //MenuItem menuItem = (sender as ContextMenu).Items[0] as MenuItem; // Получите выбранный пункт меню
             MessageBox.Show($"In OnDelDepartment menuItem.DataContext={(sender as MenuItem).DataContext.ToString()}");
-            //TreeNode selectedTreeNode = treeView.ItemContainerGenerator.ContainerFromItem(menuItem.DataContext) as TreeNode;
         }
 
         private void AppClosing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -179,12 +174,6 @@ namespace TreeWorkerWpfApp
                     MenuItem menuItemDel = new MenuItem();
                     menuItemDel.Header = "Удалить департамент";
                     menuItemDel.Click += (send, args) => {
-                        //if (MessageBox.Show($"Выбран департамент : {curNode.Name}\n\nУдалить департамент ?", "Удаление департамента", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
-                        //{
-                        //    Department dep = depRep[curNode.Name];
-                        //    depRep.DelDepartment(dep);
-                        //    CreateTreeFromList(depRep.GetSortedDepartments());
-                        //}
                         DelDepWindow ddw = new DelDepWindow();
                         ddw.SetSelectedDepartment(curNode.Name);
                         if (ddw.ShowDialog() == true)
@@ -231,7 +220,6 @@ namespace TreeWorkerWpfApp
                 Worker w = tb.DataContext as Worker;
                 if (w != null)
                 {
-                    //MessageBox.Show(w.ToString());
                     dataGrid.SelectedItem = w;
 
                     ContextMenu contextMenu = new ContextMenu();
@@ -245,7 +233,6 @@ namespace TreeWorkerWpfApp
                         {   
                             dataGrid.InputScope = null;
                             w = aww.curWorker;
-                            //wrkRep.AddWorker(aww.curWorker);
                             dataGrid.ItemsSource = wrkRep.GetWorkersFromDep(selectDepName);
                             dataGrid.Items.Refresh();
                         }
@@ -254,7 +241,7 @@ namespace TreeWorkerWpfApp
                     MenuItem menuItemDel = new MenuItem();
                     menuItemDel.Header = "Уволить сотрудника";
                     menuItemDel.Click += (send, args) => {
-                        if (MessageBox.Show($"Выбран сотрудник : {w.ToString()}\n\nУволить сотрудника ?", "Уволить сотрудника", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
+                        if (MessageBox.Show($"Выбран сотрудник : {w}\n\nУволить сотрудника ?", "Уволить сотрудника", MessageBoxButton.YesNo) == MessageBoxResult.Yes)
                         {
                             wrkRep.DelWorker(w);
                             dataGrid.ItemsSource = wrkRep.GetWorkersFromDep(selectDepName);

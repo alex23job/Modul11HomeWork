@@ -59,6 +59,7 @@ namespace TreeWorkerWpfApp
             AddDepartment(new Department("Департамент пассажироперевозок", dp));
             AddDepartment(new Department("Департамент грузоперевозок", dp));
             AddDepartment(dp);
+            AddDepartment(new Department("Резерв", mainDep));
         }
 
         public void AddDepartment(Department dep)
