@@ -5,7 +5,7 @@
 
 1. TreeView, Button, DataGrid, GridSplitter, ContextMenu => MainWindow
 2. Label, Button, TextBox, RadioButton => DelDepWindow
-3. Label, Button, TextBox, ComboBox, DatePicker => AddWorkerWindowxaml окно перенастраивается для редактирования данныз сотрудника
+3. Label, Button, TextBox, ComboBox, DatePicker => AddWorkerWindowxaml окно перенастраивается для редактирования данных сотрудника
 4. Label, Button, TextBox, ComboBox => AddDepWindow, EditDepWindow.
 
 Скрины работы приложения в папке << СкриныРаботыApp >>.
