@@ -1,0 +1,29 @@
+﻿<Window x:Class="TreeWorkerWpfApp.DelDepWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:TreeWorkerWpfApp"
+        mc:Ignorable="d"
+        Title="УДАЛЕНИЕ ДЕПАРТАМЕНТА" Height="300" Width="600" FontFamily="Times New Roman" FontSize="24" ResizeMode="NoResize">
+    <Grid Background="#FFFFFDD8">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="40*"></RowDefinition>
+            <RowDefinition Height="40*"></RowDefinition>
+            <RowDefinition Height="40*"></RowDefinition>
+            <RowDefinition Height="70*"></RowDefinition>
+            <RowDefinition Height="70*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Label Content="Название департамента :" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <TextBox x:Name="newDepName" Grid.Row="1" HorizontalAlignment="Center" VerticalAlignment="Top" Width="500"/>
+        <Label Content="Сотрудников департамента :" Grid.Row="2" HorizontalAlignment="Center" VerticalAlignment="Center"/>
+        <StackPanel Grid.Row="3" Width="500" HorizontalAlignment="Center" VerticalAlignment="Center">
+            <RadioButton x:Name="radioReserve" GroupName="SetWorkers" Content="перевести в резерв" VerticalContentAlignment="Center" IsChecked="True"/>
+            <RadioButton x:Name="radioDismiss" GroupName="SetWorkers" Content="уволить" VerticalContentAlignment="Center" IsChecked="False"/>
+        </StackPanel>
+        <StackPanel Grid.Row="4" Orientation="Horizontal" HorizontalAlignment="Center" VerticalAlignment="Center" Height="45" Margin="0,5,0,0">
+            <Button x:Name="btnOK" Content="Удалить" Width="200" Click="OnClickAddDepartment" IsDefault="True" Margin="30,0"/>
+            <Button x:Name="btnCancel" Content="Отмена" Width="200" IsCancel="True" Margin="30,0"/>
+        </StackPanel>
+    </Grid>
+</Window>
